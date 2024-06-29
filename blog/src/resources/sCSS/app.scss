@@ -1,0 +1,27 @@
+@import 'variables';
+
+.app{
+    padding-top: 30px;
+}
+
+.header{
+    margin-top: 30px;
+    padding-top: 50px;
+    background-color: $header-bg;
+    font-size: $header-size;
+    color: $header-color;
+    margin-top: 0px;
+}
+.container{
+    background-color: $body-bg;
+    font-size: $body-size;
+    color: $body-color;
+}
+.footer{
+    padding: 20px;
+    background-color: $header-bg;
+    font-size: $header-size;
+    color: $header-color;
+    margin-top: 1000px;
+}
+

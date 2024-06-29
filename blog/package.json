@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass -w src/resources/sCSS -o src/resources/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "express"
+  ],
+  "author": "tran phi hung",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.3",
+    "handlebars": "^4.7.8",
+    "morgan": "^1.10.0",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.1.4"
+  }
+}
