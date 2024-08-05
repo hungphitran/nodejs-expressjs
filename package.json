@@ -2,7 +2,7 @@
   "name": "blog",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {"node":"14.x"},
+  "engines": {"node":"20.x"},
   "scripts": {
     "start": "nodemon --inspect index.js",
     "watch": "node-sass -w src/resources/sCSS -o src/resources/public/css",
