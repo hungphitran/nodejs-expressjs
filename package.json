@@ -1,9 +1,10 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "index.js",
+  "engines": {"node":"14.x"},
   "scripts": {
-    "start": "nodemon --inspect src/index.js",
+    "start": "nodemon --inspect index.js",
     "watch": "node-sass -w src/resources/sCSS -o src/resources/public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

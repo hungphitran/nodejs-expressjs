@@ -8,10 +8,10 @@ const port = 3000
 console.log(__dirname)
 //http logger
 app.use(morgan('combined'))
-app.use(express.static(path.join(__dirname,'resources/public')))
+app.use(express.static(path.join(__dirname,'src/resources/public')))
 //template engine
 app.engine('handlebars',handlebars.engine());
-app.set('views',path.join(__dirname,'resources','views'))
+app.set('views',path.join(__dirname,'src/resources','views'))
 app.set('view engine','handlebars')
 
 console.log('views :',app.get('views'))
