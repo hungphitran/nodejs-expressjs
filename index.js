@@ -13,11 +13,24 @@ app.use(express.static(path.join(__dirname,'src/resources/public')))
 app.engine('handlebars',handlebars.engine());
 app.set('views',path.join(__dirname,'src/resources','views'))
 app.set('view engine','handlebars')
+app.use(express.urlencoded())
+app.use(express.json())
 
 console.log('views :',app.get('views'))
 
 app.get('/', (req, res) => {
   res.render('layouts/main');
+})
+app.get('/home',(req,res)=>{
+  res.render('partials/index')
+});
+
+app.get('/search',(req,res)=>{
+  res.render('partials/search')
+})
+app.post('/search',(req,res)=>{
+  console.log(req.body)
+  res.send('')
 })
 
 app.listen(port, () => {
