@@ -29,6 +29,13 @@ class courseController{
             res.status(500).send('can not create new course');
         })
     }
+    edit(req,res,next){
+        course.findOne({name:req.params.name}).lean()
+        .then(data=> {
+            res.render('partials/edit',{course:data})}
+        )
+        .catch(next)
+    }
 }
 
 module.exports=new courseController; 

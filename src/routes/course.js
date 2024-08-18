@@ -5,6 +5,7 @@ const router= require('express').Router();
 
 router.use('/create',courseController.create)
 router.post('/save',courseController.save)
+router.get('/:name/edit',courseController.edit)
 router.get('/:name',courseController.detail);
 router.get('/',courseController.show);
 

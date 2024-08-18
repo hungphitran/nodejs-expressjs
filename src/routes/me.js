@@ -4,5 +4,4 @@ const router= require('express').Router();
 
 router.get('/stored/courses',meController.storeCourse)
 
-
 module.exports= router;
