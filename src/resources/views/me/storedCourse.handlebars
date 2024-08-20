@@ -18,10 +18,10 @@
         <a href="/courses/{{this.name}}"><label>{{this.name}}</label></a>
       </td>      <td>{{this.description}}</td>
       <td>
-        <a href="courses/edit">Edit</a>
+        <a href="courses/edit/{{this._id}}">Edit</a>
       </td>
       <td>
-        <button type="button" class="btn btn-danger">Delete </button>
+        <a href="/courses/delete/{{this._id}}">Delete</a>
       </td>
     </tr>
     {{/each}}

@@ -1,5 +1,5 @@
 <div>
-    <h1>ALL COURSES</h1>
+    <h1>BIN</h1>
     <span style="display:flex; margin:20px 10px ">
       {{#each courses}}
       <div class="card" style="width: 18rem;">
@@ -7,8 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">{{this.name}}</h5>
           <p class="card-text">{{this.description}}</p>
-          <a href="courses/{{this._id}}" class="btn btn-primary">Detail</a>
-          <a href="courses/edit/{{this._id}}" class="btn btn-primary" style="background-color: rgb(255, 183, 0);">Edit</a>
+          <a href="bin/restore/{{this._id}}" class="btn btn-primary" style="background-color:green;">Restore</a>
           <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal" style="background-color: red;">
             Delete
           </button>
@@ -24,23 +23,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                Move to bin
+                Delete permanently?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button id ="btn-del" type="button" class="btn btn-primary">Save change</button>
+                <button id ="btn-del" type="button" class="btn btn-primary">Delete permanently</button>
               </div>
             </div>
           </div>
         </div>
         {{else}}
-        no course
+        NO DELETED COURSE
       {{/each}}
     </span>
 
-    
-    <a style="background-color: yellow ; margin-top:20px; padding:10px ; border-style:solid; border-width:5px" href="/courses/create"> CREATE COURSE</a>
-
+  
 </div>
 <form name="delete-form" class="row gt-10" method="post" style="padding:20px;font-size: 16px;" ></form>
 <script>
@@ -55,7 +52,7 @@
 
     const btn_del_course= document.getElementById('btn-del')
     btn_del_course.onclick=function (){
-      delete_form.action=`/courses/delete/${id}?_method=DELETE`
+      delete_form.action=`/bin/delete/${id}?_method=DELETE`
       delete_form.submit()
     }
   })
