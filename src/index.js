@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname,'resources','public')))
 app.engine('handlebars',handlebars.engine());
 app.set('views',path.join(__dirname,'resources','views'))
 app.set('view engine','handlebars')
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(methodOverride('_method'))
 const db=require('./config/db/index');

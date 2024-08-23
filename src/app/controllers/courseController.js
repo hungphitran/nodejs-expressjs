@@ -3,10 +3,9 @@ const processData=require('../../util/mongoose')
 class courseController{
     //get 
     show(req,res,next){
-        course.find({deleted:null})
+        course.find({deleted:{$ne:true}})
         .then(courses=>{
             res.render('partials/courses',{courses:processData.mongooseToObj(courses)})
-  
         }).catch(next)
     }
 
@@ -22,26 +21,14 @@ class courseController{
         res.render('partials/create')
     }
     save(req,res){
-        if(req.params.id>2){
-            var c= course.findById({_id:req.params.id}).lean()
-            .then(data=>{
-                let newData=req.body;
-                data.name=newData.name;
-                data.description=newData.description;
-                data.image=newData.image;
-                data.videoId=newData.videoId;
-                return data
-            })
-        }
-        else{
-            var c= new course(req.body)
-        }
+        var c= new course(req.body)
         c.save()
-        .then(response=>res.status(200).send(response))
+        .then(()=>{
+            res.redirect('/courses')
+        })
         .catch(function(){
             res.status(500).send('can not create new course');
         })
-        
     }
     edit(req,res){
         course.findOne({_id:req.params.id}).lean()
@@ -63,6 +50,17 @@ class courseController{
         course.delete({_id:req.params.id})
         .then(()=> res.status(200).redirect('back'))
         .catch(()=> res.status(500))
+    }
+    handleFormAction(req,res){
+        switch(req.body.action){
+            case 'delete':
+                course.delete({_id: {$in: req.body.courseIds}})
+                .then(()=> res.status(200).redirect('back'))
+                .catch(()=> res.status(500))
+                break;
+            default: 
+                res.send(req.body)
+        }
     }
 }
 

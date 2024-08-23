@@ -1,5 +1,16 @@
-<div class="mt-4">
-    <h1>My Course</h1>
+<form class="mt-4" method="POST" action="/courses/handle-form">
+  <h1>My Course</h1>
+  <div class="form-check d-flex align-items-center">
+    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+    <label class="form-check-label" for="checkbox-all">
+    Default checkbox
+    </label>
+    <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+      <option value="delete">delete</option>
+    </select>
+    <button class="btn btn-primary btn-sm btn-submit disabled">submit</button>
+  </div>
+  <a href="?_sort&column=name" class="">Increase</a>
     <table class="table">
   <thead style="font-size: 20px;">
     <tr>
@@ -11,12 +22,16 @@
     </tr>
   </thead>
   <tbody>
+
     {{#each courses}}
     <tr>
-      <th scope="row">{{@index}}</th>
+      <th>
+        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}" id="{{this._id}}">
+      </th>
       <td>
-        <a href="/courses/{{this.name}}"><label>{{this.name}}</label></a>
-      </td>      <td>{{this.description}}</td>
+        <a href="/courses/{{this._id}}"><label>{{this.name}}</label></a>
+      </td>      
+      <td>{{this.description}}</td>
       <td>
         <a href="courses/edit/{{this._id}}">Edit</a>
       </td>
@@ -27,4 +42,44 @@
     {{/each}}
   </tbody>
 </table>
-</div>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var checkboxAll = $('#checkbox-all')
+    var courseItemCheckbox=$('input[name="courseIds[]"]')
+    var submitBtn=$('.btn-submit')
+   
+    checkboxAll.change(function(){
+      if($(this).prop('checked')==true){
+        courseItemCheckbox.prop('checked',true)
+        submitBtn.removeClass('disabled');
+      }
+      else{
+        courseItemCheckbox.prop('checked',false)
+        submitBtn.addClass('disabled');
+      }
+    })
+
+    courseItemCheckbox.change(function(){
+      if(courseItemCheckbox.length==$('input[name="courseIds[]"]:checked').length){
+        checkboxAll.prop('checked',true)
+      }
+      else{
+        checkboxAll.prop('checked',false)
+      }
+      enableBtn();
+    })
+
+    function enableBtn(){
+      var checkedCnt=$('input[name="courseIds[]"]:checked').length;
+      if(checkedCnt > 0){
+        submitBtn.removeClass('disabled');
+      }
+      else{
+        submitBtn.addClass('disabled');
+      }
+      
+    }
+  });
+</script>
